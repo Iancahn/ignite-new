@@ -1,3 +1,5 @@
+
+
 const initState = {
     popular: [],
     newGames: [],
@@ -11,6 +13,7 @@ const gamesReducer = (state = initState, action) => {
         default:
             return { ...state }
     }
-}
+};
+
 
 export default gamesReducer;
