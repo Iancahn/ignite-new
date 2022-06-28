@@ -20,6 +20,8 @@ const getCurrentDay = () => {
     }
 };
 
+const API_KEY = '84adee5e7967475ab701f05b8084beb2';
+
 // Current day/month/year
 const currentYear = new Date().getFullYear();
 const currentMonth = getCurrentMonth();
@@ -30,6 +32,6 @@ const nextYear = `${currentYear + 1}-${currentMonth}-${currentDay}`;
 console.log(currentDate);
 
 //Popular Games
-const popular_games = `games?dates=${lastYear}, ${currentDate}&ordering=-rating&page_size=10`;
+const popular_games = `games?key=${API_KEY}&dates=${lastYear}, ${currentDate}&ordering=-rating&page_size=10`;
 
 export const popularGamesURL = () => `${base_url}${popular_games}`;
