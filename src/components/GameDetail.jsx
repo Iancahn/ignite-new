@@ -6,6 +6,8 @@ import styled from "styled-components";
 import { useSelector } from 'react-redux';
 import { gameDetailsURL } from '../api';
 import { useNavigate } from 'react-router-dom';
+// Image Sizes
+import { smallImage } from '../util';
 
 const GameDetail = () => {
     const navigate = useNavigate();
@@ -39,14 +41,14 @@ const GameDetail = () => {
                             </StyledInfo>
                         </StyledStats>
                         <StyledMedia>
-                            <img src={game.background_image} alt="some of the game's best screenshots" />
+                            <img src={smallImage(game.background_image, 1280)} alt="some of the game's best screenshots" />
                         </StyledMedia>
                         <StyledDescription>
                             <p>{game.description_raw}</p>
                         </StyledDescription>
                         <div className="gallery">
                             {screen.results.map(screen => (
-                                <img src={screen.image} key={screen.id} alt="game screenshots" />
+                                <img src={smallImage(screen.image, 1280)} key={screen.id} alt="game screenshots" />
                             ))}
                         </div>
                     </StyledDetail>
