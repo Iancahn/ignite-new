@@ -13,6 +13,9 @@ function Home() {
     //get the current location
     const location = useLocation();
     const pathId = location.pathname.split("/")[2];
+    if (!pathId) {
+        document.body.style.overflow = "auto";
+    }
     //FETCH GAMES
     const dispatch = useDispatch();
     useEffect(() => {
