@@ -12,26 +12,26 @@ const GameDetail = () => {
     return (
         <CardShadow>
             <StyledDetail>
-                <div className="stats">
+                <StyledStats>
                     <div className="rating">
                         <h3>{game.name}</h3>
                         <p>Rating: {game.rating}</p>
                     </div>
-                    <div className="info">
+                    <StyledInfo>
                         <h3>Platforms</h3>
-                        <div className="platforms">
+                        <StyledPlatforms>
                             {game.platforms.map(data => (
                                 <h3 key={data.platform.id}>{data.platform.name}</h3>
                             ))}
-                        </div>
-                    </div>
-                </div>
-                <div className="media">
+                        </StyledPlatforms>
+                    </StyledInfo>
+                </StyledStats>
+                <StyledMedia>
                     <img src={game.background_image} alt="some of the game's best screenshots" />
-                </div>
-                <div className="description">
+                </StyledMedia>
+                <StyledDescription>
                     <p>{game.description_raw}</p>
-                </div>
+                </StyledDescription>
                 <div className="gallery">
                     {screen.results.map(screen => (
                         <img src={screen.image} key={screen.id} alt="game screenshots" />
@@ -64,7 +64,7 @@ const CardShadow = styled(motion.div)`
 const StyledDetail = styled(motion.div)`
     width: 80%;
     border-radius:1rem;
-    padding: 2rem 20rem;
+    padding: 2rem 5rem;
     background:white;
     position:absolute;
     left:10%;
@@ -72,6 +72,35 @@ const StyledDetail = styled(motion.div)`
     img{
         width:100%;
     }
+`
+
+const StyledStats = styled(motion.div)`
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+`
+
+const StyledInfo = styled(motion.div)`
+    text-align: center ;
+`
+const StyledPlatforms = styled(motion.div)`
+    display:flex;
+    justify-content: space-evenly;
+    img{
+        margin-left:3rem;
+    }
+`
+
+const StyledMedia = styled(motion.div)`
+    margin-top:5rem;
+    img{
+        width:100%;
+        object-fit: cover;
+    }
+`
+
+const StyledDescription = styled(motion.div)`
+    margin:5rem 0rem;
 `
 
 export default GameDetail;
