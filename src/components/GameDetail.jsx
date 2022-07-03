@@ -8,39 +8,44 @@ import { gameDetailsURL } from '../api';
 
 const GameDetail = () => {
     //Data
-    const { screen, game } = useSelector((state) => state.detail);
+    const { screen, game, isLoading } = useSelector((state) => state.detail);
     return (
-        <CardShadow>
-            <StyledDetail>
-                <StyledStats>
-                    <div className="rating">
-                        <h3>{game.name}</h3>
-                        <p>Rating: {game.rating}</p>
-                    </div>
-                    <StyledInfo>
-                        <h3>Platforms</h3>
-                        <StyledPlatforms>
-                            {game.platforms.map(data => (
-                                <h3 key={data.platform.id}>{data.platform.name}</h3>
+        <>
+            {!isLoading && (
+                <CardShadow>
+                    <StyledDetail>
+                        <StyledStats>
+                            <div className="rating">
+                                <h3>{game.name}</h3>
+                                <p>Rating: {game.rating}</p>
+                            </div>
+                            <StyledInfo>
+                                <h3>Platforms</h3>
+                                <StyledPlatforms>
+                                    {game.platforms.map(data => (
+                                        <h3 key={data.platform.id}>{data.platform.name}</h3>
+                                    ))}
+                                </StyledPlatforms>
+                            </StyledInfo>
+                        </StyledStats>
+                        <StyledMedia>
+                            <img src={game.background_image} alt="some of the game's best screenshots" />
+                        </StyledMedia>
+                        <StyledDescription>
+                            <p>{game.description_raw}</p>
+                        </StyledDescription>
+                        <div className="gallery">
+                            {screen.results.map(screen => (
+                                <img src={screen.image} key={screen.id} alt="game screenshots" />
                             ))}
-                        </StyledPlatforms>
-                    </StyledInfo>
-                </StyledStats>
-                <StyledMedia>
-                    <img src={game.background_image} alt="some of the game's best screenshots" />
-                </StyledMedia>
-                <StyledDescription>
-                    <p>{game.description_raw}</p>
-                </StyledDescription>
-                <div className="gallery">
-                    {screen.results.map(screen => (
-                        <img src={screen.image} key={screen.id} alt="game screenshots" />
-                    ))}
-                </div>
-            </StyledDetail>
-        </CardShadow>
+                        </div>
+                    </StyledDetail>
+                </CardShadow>
+            )}
+        </>
+
     );
-}
+};
 
 const CardShadow = styled(motion.div)`
     width: 100%;
