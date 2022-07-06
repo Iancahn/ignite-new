@@ -5,7 +5,7 @@ import GameDetail from '../components/GameDetail';
 //Components
 import Game from '../components/Game';
 //Styling and Animation
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import styled from "styled-components";
 import { useLocation } from 'react-router-dom';
 
@@ -26,26 +26,29 @@ function Home() {
 
     return (
         <GameList>
-            {pathId && <GameDetail />}
-            <h2>Upcoming Games</h2>
-            <Games>
-                {upcoming.map(game =>
-                    <Game name={game.name} released={game.released} id={game.id} image={game.background_image} key={game.id} />
-                )}
-            </Games>
-            <h2>Popular Games</h2>
-            <Games>
-                {popular.map(game =>
-                    <Game name={game.name} released={game.released} id={game.id} image={game.background_image} key={game.id} />
-                )}
-            </Games>
-            <h2>New Games</h2>
-            <Games>
-                {newGames.map(game =>
-                    <Game name={game.name} released={game.released} id={game.id} image={game.background_image} key={game.id} />
-                )}
-            </Games>
-
+            <LayoutGroup>
+                <AnimatePresence type="crossfade" pathId={pathId}>
+                    {pathId && <GameDetail />}
+                </AnimatePresence>
+                <h2>Upcoming Games</h2>
+                <Games>
+                    {upcoming.map(game =>
+                        <Game name={game.name} released={game.released} id={game.id} image={game.background_image} key={game.id} />
+                    )}
+                </Games>
+                <h2>Popular Games</h2>
+                <Games>
+                    {popular.map(game =>
+                        <Game name={game.name} released={game.released} id={game.id} image={game.background_image} key={game.id} />
+                    )}
+                </Games>
+                <h2>New Games</h2>
+                <Games>
+                    {newGames.map(game =>
+                        <Game name={game.name} released={game.released} id={game.id} image={game.background_image} key={game.id} />
+                    )}
+                </Games>
+            </LayoutGroup>
         </GameList>
     );
 }

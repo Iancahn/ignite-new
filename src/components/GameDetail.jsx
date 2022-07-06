@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 // Image Sizes
 import { smallImage } from '../util';
 
-const GameDetail = () => {
+const GameDetail = (pathId) => {
     const navigate = useNavigate();
     // Exit Detail
     const exitDetailHandler = (e) => {
@@ -23,9 +23,24 @@ const GameDetail = () => {
     const { screen, game, isLoading } = useSelector((state) => state.detail);
     return (
         <>
+
+            import {motion, AnimatePresence} from "framer-motion"
+
+            {/* export const MyComponent = ({ isVisible }) => (
+  <AnimatePresence>
+    {isVisible && (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      />
+    )}
+  </AnimatePresence>
+) */}
+
             {!isLoading && (
                 <CardShadow className="shadow" onClick={exitDetailHandler}>
-                    <StyledDetail>
+                    <StyledDetail layoutId={pathId}>
                         <StyledStats>
                             <div className="rating">
                                 <h3>{game.name}</h3>
