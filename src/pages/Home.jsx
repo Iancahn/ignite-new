@@ -22,30 +22,30 @@ function Home() {
         dispatch(loadGames());
     }, [dispatch]);
     // Get Data Back
-    const { popular, upcoming, newGames } = useSelector((state) => state.games);
+    const { popular, upcoming, newGames, searched } = useSelector((state) => state.games);
 
     return (
         <GameList>
             <LayoutGroup>
-
-                {/* 
-            import {motion, AnimatePresence} from "framer-motion"
-
-            {/* export const MyComponent = ({ isVisible }) => (
-  <AnimatePresence>
-    {isVisible && (
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-      />
-    )}
-  </AnimatePresence>
-) */}
-
                 <AnimatePresence type="crossfade" pathId={pathId}>
                     {pathId && <GameDetail />}
                 </AnimatePresence>
+                {searched.length ? (
+                    <div className="searched">
+                        <h2>Searched Games</h2>
+                        <Games>
+                            {searched.map(game =>
+                                <Game name={game.name} released={game.released} id={game.id} image={game.background_image} key={game.id} />
+                            )}
+                        </Games>
+                    </div>
+                ) : ('')}
+                <h2>Popular Games</h2>
+                <Games>
+                    {popular.map(game =>
+                        <Game name={game.name} released={game.released} id={game.id} image={game.background_image} key={game.id} />
+                    )}
+                </Games>
                 <h2>Upcoming Games</h2>
                 <Games>
                     {upcoming.map(game =>
