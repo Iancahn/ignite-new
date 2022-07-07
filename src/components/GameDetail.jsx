@@ -60,6 +60,7 @@ const GameDetail = (pathId) => {
                 stars.push(<img alt="star" key={i} src={starEmpty}></img>);
             }
         };
+        return stars;
     }
     //Data
     const { screen, game, isLoading } = useSelector((state) => state.detail);
@@ -139,6 +140,11 @@ const StyledStats = styled(motion.div)`
     display:flex;
     align-items: center;
     justify-content: space-between;
+    img{
+        width: 1.5rem;
+        height: 1.5rem;
+        display:inline;
+    }
 `
 
 const StyledInfo = styled(motion.div)`
