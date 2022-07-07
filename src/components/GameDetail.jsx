@@ -14,6 +14,9 @@ import xbox from '../img/xbox.svg'
 import nintendo from '../img/nintendo.svg'
 import apple from '../img/apple.svg'
 import gamepad from '../img/gamepad.svg'
+// Star Images
+import starEmpty from '../img/star-empty.png'
+import starFull from '../img/star-full.png'
 
 
 const GameDetail = (pathId) => {
@@ -31,7 +34,7 @@ const GameDetail = (pathId) => {
     // Get Platform images
     const getPlatform = (platform) => {
         switch (platform) {
-            case "PlayStation 4":
+            case "PlayStation 5":
                 return playstation;
             case "Xbox One":
                 return xbox;
@@ -45,6 +48,19 @@ const GameDetail = (pathId) => {
                 return gamepad;
         }
     }
+
+    // Get Stars
+    const getStars = () => {
+        const stars = [];
+        const rating = Math.floor(game.rating);
+        for (let i = 1; i <= 5; i++) {
+            if (i <= rating) {
+                stars.push(<img alt="star" key={i} src={starFull}></img>);
+            } else {
+                stars.push(<img alt="star" key={i} src={starEmpty}></img>);
+            }
+        };
+    }
     //Data
     const { screen, game, isLoading } = useSelector((state) => state.detail);
     return (
@@ -56,6 +72,7 @@ const GameDetail = (pathId) => {
                             <div className="rating">
                                 <h3>{game.name}</h3>
                                 <p>Rating: {game.rating}</p>
+                                {getStars()}
                             </div>
                             <StyledInfo>
                                 <h3>Platforms</h3>
