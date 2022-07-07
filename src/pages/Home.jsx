@@ -7,7 +7,10 @@ import Game from '../components/Game';
 //Styling and Animation
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import styled from "styled-components";
+import { fadeIn } from '../animations';
+// Redux
 import { useLocation } from 'react-router-dom';
+
 
 function Home() {
     //get the current location
@@ -25,7 +28,7 @@ function Home() {
     const { popular, upcoming, newGames, searched } = useSelector((state) => state.games);
 
     return (
-        <GameList>
+        <GameList variants={fadeIn} initial='hidden' animate='show'>
             <LayoutGroup>
                 <AnimatePresence type="crossfade" pathId={pathId}>
                     {pathId && <GameDetail />}

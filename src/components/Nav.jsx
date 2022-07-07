@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 // Import Animations
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import logo from '../img/logo.svg'
+import logo from '../img/logo.svg';
+import { fadeIn } from '../animations';
 // Redux and Routes
 import { fetchSearch } from '../actions/gamesAction';
 import { useDispatch } from 'react-redux';
@@ -26,7 +27,7 @@ const Nav = () => {
     }
 
     return (
-        < StyledNav >
+        < StyledNav variants={fadeIn} initial='hidden' animate='show'>
             <StyledLogo onClick={clearSearched}>
                 <img src={logo} alt="" />
                 <h1>Ignite</h1>
