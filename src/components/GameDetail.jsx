@@ -8,6 +8,13 @@ import { gameDetailsURL } from '../api';
 import { useNavigate } from 'react-router-dom';
 // Image Sizes
 import { smallImage } from '../util';
+import playstation from '../img/playstation.svg'
+import steam from '../img/steam.svg'
+import xbox from '../img/xbox.svg'
+import nintendo from '../img/nintendo.svg'
+import apple from '../img/apple.svg'
+import gamepad from '../img/gamepad.svg'
+
 
 const GameDetail = (pathId) => {
     const navigate = useNavigate();
@@ -18,26 +25,30 @@ const GameDetail = (pathId) => {
             document.body.style.overflow = 'auto';
             navigate('/');
         }
+    };
+
+
+    // Get Platform images
+    const getPlatform = (platform) => {
+        switch (platform) {
+            case "PlayStation 4":
+                return playstation;
+            case "Xbox One":
+                return xbox;
+            case "PC":
+                return steam;
+            case "Nintendo Switch":
+                return nintendo;
+            case "iOS":
+                return apple;
+            default:
+                return gamepad;
+        }
     }
     //Data
     const { screen, game, isLoading } = useSelector((state) => state.detail);
     return (
         <>
-
-            import {motion, AnimatePresence} from "framer-motion"
-
-            {/* export const MyComponent = ({ isVisible }) => (
-  <AnimatePresence>
-    {isVisible && (
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-      />
-    )}
-  </AnimatePresence>
-) */}
-
             {!isLoading && (
                 <CardShadow className="shadow" onClick={exitDetailHandler}>
                     <StyledDetail layoutId={pathId}>
@@ -50,7 +61,7 @@ const GameDetail = (pathId) => {
                                 <h3>Platforms</h3>
                                 <StyledPlatforms>
                                     {game.platforms.map(data => (
-                                        <h3 key={data.platform.id}>{data.platform.name}</h3>
+                                        <img key={data.platform.id} alt="Game is available on these platforms" src={getPlatform(data.platform.name)}></img>
                                     ))}
                                 </StyledPlatforms>
                             </StyledInfo>
@@ -80,6 +91,7 @@ const CardShadow = styled(motion.div)`
     overflow-y:scroll;
     background:rgba(0,0,0,0.5);
     position:fixed;
+    z-index:5;
     top:0;
     left:0;
     &::-webkit-scrollbar{
