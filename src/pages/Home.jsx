@@ -30,7 +30,7 @@ function Home() {
     return (
         <GameList variants={fadeIn} initial='hidden' animate='show'>
             <LayoutGroup>
-                <AnimatePresence type="crossfade" pathId={pathId}>
+                <AnimatePresence type="crossfade" layoutId={pathId}>
                     {pathId && <GameDetail />}
                 </AnimatePresence>
                 {searched.length ? (

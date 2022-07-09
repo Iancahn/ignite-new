@@ -62,6 +62,7 @@ const GameDetail = (pathId) => {
         };
         return stars;
     }
+
     //Data
     const { screen, game, isLoading } = useSelector((state) => state.detail);
     return (
@@ -109,7 +110,7 @@ const CardShadow = styled(motion.div)`
     overflow-y:scroll;
     background:rgba(0,0,0,0.5);
     position:fixed;
-    z-index:5;
+    z-index:95;
     top:0;
     left:0;
     &::-webkit-scrollbar{
@@ -125,6 +126,7 @@ const CardShadow = styled(motion.div)`
 
 const StyledDetail = styled(motion.div)`
     width: 80%;
+    /* z-index:99; */
     border-radius:1rem;
     padding: 2rem 5rem;
     background:white;
